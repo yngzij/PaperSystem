@@ -1,0 +1,17 @@
+{{define "content"}}
+    <div class="container" xmlns:border-radius="http://www.w3.org/1999/xhtml">
+        <div class="row">
+            <div class="col-lg-12">
+                {{range .papers }}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="caption">
+                            <h5>{{ .Body}}</h5>
+                            <a href="papers/{{.Uuid}}"><img src="{{.Image_1}}" class="img-thumbnail" alt="Cinque Terre" width="150" height="150"></a>
+                            <p>
+                        </div>
+                    </div>
+                        {{end}}
+            </div>
+        </div>
+    </div>
+{{end}}

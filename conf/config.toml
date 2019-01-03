@@ -1,0 +1,10 @@
+[app]
+address = ":8080"
+
+[db]
+
+driver = "mysql"
+connect = "root:ta@(119.23.214.123:3306)/paper_system?charset=utf8"
+
+[no_sql]
+redis_host=""

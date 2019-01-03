@@ -1,0 +1,18 @@
+{{ define "login_content" }}
+
+    <form class="form-signin center" role="form" action="/login" method="post">
+        <h2 class="form-signin-heading text-center">
+            <i class="fa fa-file-text-o ">
+                论 集
+            </i>
+
+        </h2>
+        <input type="text" name="useraccount" class="form-control" placeholder="ID" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <br/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登 录</button>
+        <br/>
+        <a class="lead pull-right" href="/signup">注 册</a>
+    </form>
+
+{{ end }}

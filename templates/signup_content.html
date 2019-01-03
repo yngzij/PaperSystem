@@ -1,0 +1,17 @@
+{{ define "signup_content" }}
+
+    <form class="form-signin" role="form" action="/signup" method="post">
+        <h2 class="form-signin-heading text-center">
+            <i class="fa fa-file-text-o">
+                论集
+            </i>
+        </h2>
+
+
+        <div class="lead">填写下列信息完成注册</div>
+        <input id="name" type="text" name="username" class="form-control" placeholder="姓名" required autofocus>
+        <input type="text" name="useraccount" class="form-control" placeholder="账号" required>
+        <input type="password" name="password" class="form-control" placeholder="密码" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+    </form>
+{{ end }}

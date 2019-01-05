@@ -29,7 +29,6 @@ func (self *Mainrouter) Initialize(r *gin.Engine) {
 	self.router.GET("/signup",self.SignupViewHandler)
 	self.router.POST("/newPaper",self.NewPaperHandler)
 	self.router.GET("/newPaper",self.PaperViewHandler)
-
 	self.router.GET("/papers/:Uuid",self.GetOnePaper)
 	self.router.GET("/error/:msg",self.ErrorHandler)
 	//self.router.POST("/authenticate",self.AuthenticateHandler)

@@ -50,7 +50,6 @@ func Encrypt(plaintext string) (cryptext string) {
 func PaperByUUID(uuid string) (paper Paper, err error) {
 	fmt.Println(uuid)
 	_, err = Db.Where("uuid=?", uuid).Get(&paper)
-	fmt.Println("paper",paper)
 	return
 }
 

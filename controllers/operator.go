@@ -9,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"reflect"
 	"regexp"
 	"strconv"
 	"time"
@@ -34,8 +33,6 @@ func (router *Mainrouter) IndexHandler(c *gin.Context) {
 		user_temp, _ := models.UserByUUID(v.(string))
 		user = &user_temp
 	}
-	fmt.Println("user", user)
-
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"user":   user,
 		"papers": papers,
@@ -47,14 +44,11 @@ func (r *Mainrouter) LogoutHandler(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Delete("userSession")
 	session.Save()
-
 	c.Redirect(301, "/")
 }
 
 func (router *Mainrouter) ErrorHandler(c *gin.Context) {
 	msg := c.Param("msg")
-	fmt.Println(msg)
-
 	c.HTML(200, "alert_msg.html", gin.H{
 		"msg": msg,
 	})
@@ -64,7 +58,6 @@ func (router *Mainrouter) GetOnePaper(c *gin.Context) {
 	session := sessions.Default(c)
 	v := session.Get("userSession")
 	uuid := c.Param("Uuid")
-	fmt.Println("uuid", uuid)
 	var paper *models.Paper
 	if v != nil {
 		paper_temp, _ := models.PaperByUUID(uuid)
@@ -82,13 +75,10 @@ func (router *Mainrouter) NewPaperHandler(c *gin.Context) {
 	title := c.PostForm("title")
 	body := c.PostForm("content")
 	var images []string
-
 	for i := 1; i <= 4; i++ {
 		image:="image_"+strconv.Itoa(i)
-		fmt.Println(image)
 
 		file, header, err := c.Request.FormFile(image)
-
 
 		if err != nil {
 			c.String(http.StatusBadRequest, "Bad request")
@@ -113,11 +103,9 @@ func (router *Mainrouter) NewPaperHandler(c *gin.Context) {
 		}
 		imgpath="/"+imgpath
 		images=append(images, imgpath)
-		fmt.Println("............")
 		fmt.Println(images)
 		_ = out.Close()
 	}
-	fmt.Println(reflect.TypeOf(images))
 	c.String(http.StatusCreated, "upload successful")
 
 	paper := models.Paper{
@@ -147,7 +135,6 @@ func (router *Mainrouter) SignupHandler(c *gin.Context) {
 	matched, _ := regexp.MatchString("^[a-zA-Z0-9][a-zA-Z0-9_.-]+$", accuont)
 
 	if !matched {
-		fmt.Println("Username is invalid!")
 		c.JSON(http.StatusOK, &models.Response{Success: false, Message: "Username is invalid!"})
 		return
 	}
